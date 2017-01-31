@@ -41,7 +41,6 @@ var stringifyJSON = function(obj, key, index) {
   	   }
   	} else {
   		if (index === 0){
-  			console.log(stringifyJSON(obj, key, index + 1));
   			index = index + 1;
   			return '[' + stringifyJSON(obj[0]) + stringifyJSON(obj, key, index);
   		} else if (index === key){
@@ -53,7 +52,31 @@ var stringifyJSON = function(obj, key, index) {
   }
 
   if (typeof obj === 'object'){
-  	
+  	//debugger;
+  	console.log(obj);
+  	if (key === undefined){
+  		if (Object.keys(obj).length === 0){
+  			return '{}';
+  		} else {
+  			var key = Object.keys(obj);
+  			var index = 0;
+  			return stringifyJSON(obj, key, index);
+  		}
+  	} else {
+  		if (!(typeof obj[key[index]] === 'function' || obj[key[index]] === undefined) || index === key.length){
+  			if (index === 0){
+  				index = index + 1
+  				return '{' + stringifyJSON(key[0]) + ':' + stringifyJSON(obj[key[0]]) + stringifyJSON(obj, key, index);
+  			} else if (index === key.length){
+  				return '}'
+  			} else if (index < key.length){
+  				return ',' + stringifyJSON(key[index]) + ':' + stringifyJSON(obj[key[index]]) + stringifyJSON(obj, key, index+  1);
+  			}
+  		} else {
+  			return '{}';
+  		}
+
+  	}
   }
 
 
