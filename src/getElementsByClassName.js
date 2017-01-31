@@ -11,26 +11,14 @@ var getElementsByClassName = function(className) {
   }
 
 
-  var pushElements = function(node, arrayLength, index){
-  	console.log(node);
-    console.log(className);
-  	if (_.contains(node[index].classList, className)){
-  		outputArray.push(node[index]);
-  		if (node.childNodes.length > 0){
-  			pushElements(node[index].childNodes, node[index].childNodes.length, 0);
-  		} else {
-  			pushElements(node, arrayLength, index + 1)
-  		}
-  	} else if (node.childNodes.length > 0){
-  			pushElements(node[index].childNodes, node[index].childNodes.length, 0);
-  	} else if (arrayLength === index){
-  		
-  	}
+  var pushElements = function(node){
+  	if (_.contains(node.classList, className)){
+  		outputArray.push(node);
 
 
     };
 
-  pushElements(document.body.childNodes, document.body.childNodes.length, 0);
+  pushElements(document.body.childNodes);
   return outputArray;
   // your code here
 };
