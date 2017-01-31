@@ -4,7 +4,6 @@
 // but you don't so you're going to write it from scratch:
 
 var stringifyJSON = function(obj, key, index) {
-  // your code goes here
   if (typeof obj === 'string'){
   	return '\"' + obj + '\"';
   } 
@@ -34,7 +33,6 @@ var stringifyJSON = function(obj, key, index) {
   		if (obj.length === 0){
   			return '[]';
   		} else {
-  			console.log(obj);
   	     var key = obj.length;
   	     var index = 0;
   	     return stringifyJSON(obj, key, index);
@@ -51,8 +49,6 @@ var stringifyJSON = function(obj, key, index) {
   }
 
   if (typeof obj === 'object'){
-  	//debugger;
-  	console.log(obj);
   	if (key === undefined){
   		if (Object.keys(obj).length === 0){
   			return '{}';
@@ -76,13 +72,4 @@ var stringifyJSON = function(obj, key, index) {
 
   	}
   }
-
-
-
 };
-
-//figure out the type, 
-//find a way to ierate through the type
-//pass the obj/ array iteration of the type
-//returning the string of that iteration
-//run again
