@@ -14,7 +14,7 @@ var stringifyJSON = function(obj, key, index) {
   }
 
   if (typeof obj === 'number'){
-  	return obj.toString();
+  	return "" + obj;
   }
 
   if (typeof obj === 'boolean'){
@@ -41,8 +41,7 @@ var stringifyJSON = function(obj, key, index) {
   	   }
   	} else {
   		if (index === 0){
-  			index = index + 1;
-  			return '[' + stringifyJSON(obj[0]) + stringifyJSON(obj, key, index);
+  			return '[' + stringifyJSON(obj[0]) + stringifyJSON(obj, key, index + 1);
   		} else if (index === key){
   			return ']';
   		} else if (index < key){
@@ -65,10 +64,9 @@ var stringifyJSON = function(obj, key, index) {
   	} else {
   		if (!(typeof obj[key[index]] === 'function' || obj[key[index]] === undefined) || index === key.length){
   			if (index === 0){
-  				index = index + 1
-  				return '{' + stringifyJSON(key[0]) + ':' + stringifyJSON(obj[key[0]]) + stringifyJSON(obj, key, index);
+  				return '{' + stringifyJSON(key[0]) + ':' + stringifyJSON(obj[key[0]]) + stringifyJSON(obj, key, index + 1);
   			} else if (index === key.length){
-  				return '}'
+  				return '}';
   			} else if (index < key.length){
   				return ',' + stringifyJSON(key[index]) + ':' + stringifyJSON(obj[key[index]]) + stringifyJSON(obj, key, index+  1);
   			}
