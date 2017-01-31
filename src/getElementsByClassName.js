@@ -6,19 +6,17 @@
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className) {
   var outputArray = [];
-  if (_.contains(document.body.classList, className)){
-  	outputArray.push(document.body);
-  }
-
 
   var pushElements = function(node){
   	if (_.contains(node.classList, className)){
   		outputArray.push(node);
-
-
+  	}
+  	_.each(node.childNodes, function(node){
+  		pushElements(node);
+  	});
     };
 
-  pushElements(document.body.childNodes);
+  pushElements(document.body);
   return outputArray;
   // your code here
 };
