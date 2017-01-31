@@ -3,7 +3,7 @@
 
 // but you don't so you're going to write it from scratch:
 
-var stringifyJSON = function(obj) {
+var stringifyJSON = function(obj, keyLength, index) {
   // your code goes here
   if (typeof obj === 'string'){
   	return '\"' + obj + '\"';
@@ -22,6 +22,33 @@ var stringifyJSON = function(obj) {
   		return 'true';
   	} else {
   		return 'false';
+  	}
+  }
+
+  if (typeof obj === 'function' || obj === undefined){
+  	return;
+  }
+
+  if (Array.isArray(obj)){
+  	if (keyLength === undefined){
+  		if (obj.length === 0){
+  			return '[]';
+  		} else {
+  			console.log(obj);
+  	     var keyLength = obj.length;
+  	     var index = 0;
+  	     return stringifyJSON(obj, keyLength, index);
+  	   }
+  	} else {
+  		if (index === 0){
+  			console.log(stringifyJSON(obj, keyLength, index + 1));
+  			index = index + 1;
+  			return '[' + stringifyJSON(obj[0]) + stringifyJSON(obj, keyLength, index);
+  		} else if (index === keyLength){
+  			return ']';
+  		} else if (index < keyLength){
+  			return stringifyJSON(obj[index]) + stringifyJSON(obj, keyLength, index + 1);
+  		}
   	}
   }
 
