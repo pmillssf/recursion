@@ -47,7 +47,7 @@ var stringifyJSON = function(obj, keyLength, index) {
   		} else if (index === keyLength){
   			return ']';
   		} else if (index < keyLength){
-  			return stringifyJSON(obj[index]) + stringifyJSON(obj, keyLength, index + 1);
+  			return ',' + stringifyJSON(obj[index]) + stringifyJSON(obj, keyLength, index + 1);
   		}
   	}
   }
