@@ -4,6 +4,11 @@
 // };
 
 // But instead we're going to implement it from scratch:
+var getElementsByClassName = function(className) {
+  // your code here
+};
+
+/*
 var getElementsByClassName = function(className, node, index, outputArray) {
   // your code here
   if (arguments.length === 1){
@@ -19,8 +24,11 @@ var getElementsByClassName = function(className, node, index, outputArray) {
   } else {
   	//debugger;
   	if (node.length === index){
+
   	  return outputArray;
+
   	} if (_.contains(node[index].classList, className) && node[index].childNodes.length > 0){
+
   	  outputArray.push(node[index]);
   	  return getElementsByClassName(className, node[index].childNodes, 0, outputArray)
   	
@@ -29,11 +37,14 @@ var getElementsByClassName = function(className, node, index, outputArray) {
   	  outputArray.push(node[index]);
   	  return getElementsByClassName(className, node, index+1, outputArray);
   	
+  	} else if (node[index].childNodes.length > 0){
+  		return getElementsByClassName(className, node[index].childNodes, 0, outputArray)
   	} else {
   		return getElementsByClassName(className, node, index+1, outputArray)
   	}
   }
 };
+*/
 
 // initiate by checking if the document.body node classList contatins the class
 // then run document.body through, checking if the childNodes match, and then if
