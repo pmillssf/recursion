@@ -5,6 +5,33 @@
 
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className) {
+  var outputArray = [];
+  if (_.contains(document.body.classList, className)){
+  	outputArray.push(document.body);
+  }
+
+
+  var pushElements = function(node, arrayLength, index){
+  	console.log(node);
+    console.log(className);
+  	if (_.contains(node[index].classList, className)){
+  		outputArray.push(node[index]);
+  		if (node.childNodes.length > 0){
+  			pushElements(node[index].childNodes, node[index].childNodes.length, 0);
+  		} else {
+  			pushElements(node, arrayLength, index + 1)
+  		}
+  	} else if (node.childNodes.length > 0){
+  			pushElements(node[index].childNodes, node[index].childNodes.length, 0);
+  	} else if (arrayLength === index){
+  		
+  	}
+
+
+    };
+
+  pushElements(document.body.childNodes, document.body.childNodes.length, 0);
+  return outputArray;
   // your code here
 };
 
