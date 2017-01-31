@@ -8,16 +8,33 @@ var getElementsByClassName = function(className, node, index, outputArray) {
   // your code here
   if (arguments.length === 1){
   	if (_.contains(document.body.classList, className)){
-  		var outputArray = [];
-  		outputArray.push(document.body)
-  		return getElementsByClassName(className, document.body, 0, outputArray);
+  	  var outputArray = [];
+  	  outputArray.push(document.body)
+  	  return getElementsByClassName(className, document.body.childNodes, 0, outputArray);
+
   	} else{
-  		return getElementsByClassName(className, document.body, 0, [])
+
+  	  return getElementsByClassName(className, document.body.childNodes, 0, [])
   	}
   } else {
+  	//debugger;
+  	if (node.length === index){
+  	  return outputArray;
+  	} if (_.contains(node[index].classList, className) && node[index].childNodes.length > 0){
+  	  outputArray.push(node[index]);
+  	  return getElementsByClassName(className, node[index].childNodes, 0, outputArray)
+  	
+  	} else if (_.contains(node[index].classList, className)){
+  	
+  	  outputArray.push(node[index]);
+  	  return getElementsByClassName(className, node, index+1, outputArray);
+  	
+  	} else {
+  		return getElementsByClassName(className, node, index+1, outputArray)
+  	}
   }
 };
 
 // initiate by checking if the document.body node classList contatins the class
-// then run document.body through, checking if the childnodes match, and then if
-// the childnode has childnoes
+// then run document.body through, checking if the childNodes match, and then if
+// the childNode has childNodes
